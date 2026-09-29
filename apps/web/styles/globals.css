@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #070B14;
+    --bg-secondary: #0D1422;
+    --bg-card: #111A2A;
+    --border: #243149;
+    --primary: #4165FF;
+    --positive: #18C78E;
+    --negative: #FF4D6D;
+    --warning: #F5B942;
+    --text-primary: #F5F7FB;
+    --text-secondary: #98A4B8;
+
+    --background: 225 47% 6%;
+    --foreground: 210 60% 97%;
+    --card: 218 42% 12%;
+    --card-foreground: 210 60% 97%;
+    --popover: 220 44% 9%;
+    --popover-foreground: 210 60% 97%;
+    --primary: 228 100% 62%;
+    --primary-foreground: 210 60% 97%;
+    --secondary: 220 44% 9%;
+    --secondary-foreground: 215 20% 65%;
+    --muted: 218 42% 12%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 214 32% 22%;
+    --accent-foreground: 210 60% 97%;
+    --destructive: 347 100% 65%;
+    --destructive-foreground: 210 60% 97%;
+    --border: 214 32% 22%;
+    --input: 214 32% 22%;
+    --ring: 228 100% 62%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: #070B14;
+    color: #F5F7FB;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #070B14;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #243149;
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4165FF;
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #243149 #070B14;
+  }
+}
+
+@layer components {
+  /* Chart Container */
+  .chart-container {
+    background: #070B14;
+    border: 1px solid #243149;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Trading Card */
+  .trading-card {
+    background: #111A2A;
+    border: 1px solid #243149;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.4);
+    transition: box-shadow 0.2s ease;
+  }
+
+  .trading-card:hover {
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  /* Skeleton Loader */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      #111A2A 0%,
+      #1a2740 50%,
+      #111A2A 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-wave 1.5s linear infinite;
+    border-radius: 4px;
+  }
+
+  /* Connection Status Pulse */
+  .status-live {
+    animation: pulse-live 2s ease-in-out infinite;
+  }
+
+  .status-reconnecting {
+    animation: pulse-reconnecting 1s ease-in-out infinite;
+  }
+
+  /* Confidence Ring */
+  .confidence-ring-circle {
+    transition: stroke-dashoffset 1.2s ease-out;
+    transform-origin: center;
+    transform: rotate(-90deg);
+  }
+
+  /* Signal Direction Badge */
+  .direction-call {
+    background: rgba(24, 199, 142, 0.15);
+    border: 1px solid rgba(24, 199, 142, 0.4);
+    color: #18C78E;
+  }
+
+  .direction-put {
+    background: rgba(255, 77, 109, 0.15);
+    border: 1px solid rgba(255, 77, 109, 0.4);
+    color: #FF4D6D;
+  }
+
+  .direction-no-trade {
+    background: rgba(245, 185, 66, 0.15);
+    border: 1px solid rgba(245, 185, 66, 0.4);
+    color: #F5B942;
+  }
+
+  /* Terminal Text */
+  .terminal-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+  }
+
+  /* Glow Effects */
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(65, 101, 255, 0.3);
+  }
+
+  .glow-positive {
+    box-shadow: 0 0 20px rgba(24, 199, 142, 0.3);
+  }
+
+  .glow-negative {
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.3);
+  }
+
+  /* Stat Number */
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Input base */
+  .terminal-input {
+    background: #070B14;
+    border: 1px solid #243149;
+    color: #F5F7FB;
+    border-radius: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    outline: none;
+    transition: border-color 0.15s ease;
+    width: 100%;
+  }
+
+  .terminal-input:focus {
+    border-color: #4165FF;
+    box-shadow: 0 0 0 2px rgba(65, 101, 255, 0.2);
+  }
+
+  /* Confidence bar */
+  .confidence-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: #243149;
+    overflow: hidden;
+  }
+
+  .confidence-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.8s ease-out;
+  }
+
+  /* Data table rows */
+  .table-row-hover {
+    transition: background 0.15s ease;
+  }
+
+  .table-row-hover:hover {
+    background: rgba(65, 101, 255, 0.05);
+  }
+
+  /* Separator */
+  .terminal-separator {
+    border-color: #243149;
+  }
+}
+
+@layer utilities {
+  /* Text gradient */
+  .text-gradient-primary {
+    background: linear-gradient(135deg, #4165FF 0%, #7B8FFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-positive {
+    background: linear-gradient(135deg, #18C78E 0%, #4DFFB4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Number formatting */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Truncate */
+  .truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Keyframes */
+@keyframes pulse-live {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(24, 199, 142, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(24, 199, 142, 0);
+  }
+}
+
+@keyframes pulse-reconnecting {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(245, 185, 66, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(245, 185, 66, 0);
+  }
+}
+
+@keyframes skeleton-wave {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Lightweight Charts dark theme overrides */
+.tv-lightweight-charts {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Recharts dark theme */
+.recharts-cartesian-axis-tick-value {
+  fill: #98A4B8 !important;
+  font-size: 11px !important;
+}
+
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid #4165FF;
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(65, 101, 255, 0.3);
+  color: #F5F7FB;
+}
